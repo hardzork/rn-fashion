@@ -1,12 +1,13 @@
-import { BaseTheme, createText, createTheme } from "@shopify/restyle";
+import { createBox, createText, createTheme } from "@shopify/restyle";
 
-const theme = createTheme<BaseTheme>({
+const theme = createTheme({
   colors: {
     primary: "#2cb9b0",
     title: "#0c0d34",
     text: "rgba(12, 13, 52, 0.7)",
-    lightText: "rgba(12, 13, 52, 0.05)",
+    grey: "rgba(12, 13, 52, 0.05)",
     white: "white",
+    "slide.grey": "#f4f0ef",
   },
   spacing: {
     s: 8,
@@ -18,34 +19,46 @@ const theme = createTheme<BaseTheme>({
     phone: 0,
     tablet: 768,
   },
+  borderRadii: {
+    s: 4,
+    m: 10,
+    l: 25,
+    xl: 75,
+  },
   textVariants: {
     hero: {
-      fontSize: 60,
-      lineHeight: 60,
-      fontFamily: "SFProText-Bold",
+      fontSize: 80,
+      lineHeight: 80,
+      fontFamily: "SFProDisplay-Bold",
       color: "white",
       textAlign: "center",
     },
     title1: {
       fontSize: 28,
-      fontFamily: "SFProText-Semibold",
+      fontFamily: "SFProDisplay-Semibold",
       color: "title",
     },
     title2: {
       fontSize: 24,
       lineHeight: 30,
-      fontFamily: "SFProText-Semibold",
+      fontFamily: "SFProDisplay-Semibold",
       color: "title",
     },
     body: {
       fontSize: 16,
       lineHeight: 24,
-      fontFamily: "SFProText-Regular",
+      fontFamily: "SFProDisplay-Regular",
+      color: "text",
+    },
+    button: {
+      fontSize: 15,
+      fontFamily: "SFProDisplay-Medium",
       color: "text",
     },
   },
 });
 
 export type Theme = typeof theme;
+export const Box = createBox<Theme>();
 export const Text = createText<Theme>();
 export default theme;

@@ -4,16 +4,23 @@ import { ThemeProvider } from "@shopify/restyle";
 import { createStackNavigator } from "@react-navigation/stack";
 // import { SafeAreaView, StyleSheet, StatusBar } from "react-native";
 
-import { Onboarding, Welcome } from "./src/Authentication";
+import {
+  assets as authenticationAssets,
+  Onboarding,
+  Welcome,
+} from "./src/Authentication";
 import { LoadAssets, theme } from "./src/components";
+import { Routes } from "./src/types/Navigation";
 
+const assets = [...authenticationAssets];
 const fonts = {
-  "SFProText-Bold": require("./assets/fonts/SF-Pro-Text-Bold.otf"),
-  "SFProText-Semibold": require("./assets/fonts/SF-Pro-Text-Semibold.otf"),
-  "SFProText-Regular": require("./assets/fonts/SF-Pro-Text-Regular.otf"),
+  "SFProDisplay-Bold": require("./assets/fonts/SF-Pro-Display-Bold.otf"),
+  "SFProDisplay-Semibold": require("./assets/fonts/SF-Pro-Display-Semibold.otf"),
+  "SFProDisplay-Regular": require("./assets/fonts/SF-Pro-Display-Regular.otf"),
+  "SFProDisplay-Medium": require("./assets/fonts/SF-Pro-Display-Medium.otf"),
 };
 
-const AuthenticationStack = createStackNavigator();
+const AuthenticationStack = createStackNavigator<Routes>();
 const AuthenticationNavigator = () => {
   return (
     <AuthenticationStack.Navigator headerMode="none">
@@ -26,7 +33,7 @@ const AuthenticationNavigator = () => {
 export default function App() {
   return (
     <ThemeProvider {...{ theme }}>
-      <LoadAssets {...{ fonts }}>
+      <LoadAssets {...{ fonts, assets }}>
         {/* <StatusBar backgroundColor="transparent" barStyle="dark-content" /> */}
         {/* <SafeAreaView style={styles.container}> */}
         <AuthenticationNavigator />
