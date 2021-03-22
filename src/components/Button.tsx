@@ -25,6 +25,7 @@ interface ButtonProps {
 const Button = ({ variant, label, onPress, children }: ButtonProps) => {
   const theme = useTheme<Theme>();
   const backgroundColor =
+    // eslint-disable-next-line no-nested-ternary
     variant === "primary"
       ? theme.colors.primary
       : variant === "transparent"

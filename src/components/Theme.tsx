@@ -6,8 +6,10 @@ const theme = createTheme({
     secondary: "#0c0d34",
     text: "rgba(12, 13, 52, 0.7)",
     grey: "rgba(12, 13, 52, 0.05)",
+    darkGrey: "#8a8d90",
     white: "white",
     "slide.grey": "#f4f0ef",
+    danger: "#FF0058",
   },
   spacing: {
     s: 8,
@@ -49,7 +51,7 @@ const theme = createTheme({
       fontSize: 16,
       lineHeight: 24,
       fontFamily: "SFProDisplay-Regular",
-      color: "secondary",
+      color: "text",
     },
     button: {
       fontSize: 15,
