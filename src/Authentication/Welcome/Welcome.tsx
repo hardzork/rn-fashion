@@ -3,6 +3,7 @@ import { Dimensions, Image } from "react-native";
 
 import { Button } from "../../components";
 import theme, { Box, Text } from "../../components/Theme";
+import { Routes, StackNavigationProps } from "../../types/Navigation";
 const { width } = Dimensions.get("window");
 const picture = {
   src: require("../assets/5.png"),
@@ -10,7 +11,7 @@ const picture = {
   height: 5074,
 };
 export const assets = [picture.src];
-const Welcome = () => {
+const Welcome = ({ navigation }: StackNavigationProps<Routes, "Welcome">) => {
   return (
     <Box flex={1} backgroundColor="white">
       <Box
@@ -55,7 +56,7 @@ const Welcome = () => {
             variant="primary"
             label="Já possui conta? Faça o Login"
             onPress={() => {
-              return;
+              navigation.navigate("Login");
             }}
           />
           <Button
