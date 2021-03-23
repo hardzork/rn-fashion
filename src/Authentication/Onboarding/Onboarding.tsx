@@ -10,16 +10,18 @@ import {
   useScrollHandler,
   interpolateColor,
 } from "react-native-redash/lib/module/v1";
+import { useTheme } from "@shopify/restyle";
 
-import { theme } from "../../components";
 import { Routes, StackNavigationProps } from "../../types/Navigation";
+import { Theme, makeStyles } from "../../components/Theme";
 
 import Slide, { SLIDE_HEIGHT } from "./Slide";
 import Subslide from "./Subslide";
 import Dot from "./Dot";
 
 const { width } = Dimensions.get("window");
-const styles = StyleSheet.create({
+
+const useStyles = makeStyles((theme: Theme) => ({
   container: {
     flex: 1,
     backgroundColor: "white",
@@ -50,7 +52,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
-});
+}));
 
 const slides = [
   {
@@ -108,6 +110,8 @@ export const assets = slides.map((slide) => slide.picture.src);
 const Onboarding = ({
   navigation,
 }: StackNavigationProps<Routes, "Onboarding">) => {
+  const styles = useStyles();
+  const theme = useTheme<Theme>();
   const scroll = useRef<Animated.ScrollView>(null);
   const { scrollHandler, x } = useScrollHandler();
   const backgroundColor = interpolateColor(x, {

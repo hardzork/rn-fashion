@@ -1,8 +1,9 @@
+import { useTheme } from "@shopify/restyle";
 import React from "react";
 import { Dimensions, Image } from "react-native";
 
 import { Button } from "../../components";
-import theme, { Box, Text } from "../../components/Theme";
+import { Box, Text, Theme } from "../../components/Theme";
 import { Routes, StackNavigationProps } from "../../types/Navigation";
 const { width } = Dimensions.get("window");
 const picture = {
@@ -12,6 +13,7 @@ const picture = {
 };
 export const assets = [picture.src];
 const Welcome = ({ navigation }: StackNavigationProps<Routes, "Welcome">) => {
+  const theme = useTheme<Theme>();
   return (
     <Box flex={1} backgroundColor="white">
       <Box

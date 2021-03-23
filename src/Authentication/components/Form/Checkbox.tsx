@@ -2,8 +2,10 @@ import React from "react";
 import { Feather as Icon } from "@expo/vector-icons";
 import { RectButton } from "react-native-gesture-handler";
 import { StyleSheet } from "react-native";
+import { useTheme } from "@shopify/restyle";
 
-import { Box, Text, theme } from "../../../components";
+import { Box, Text } from "../../../components";
+import { Theme } from "../../../components/Theme";
 
 interface CheckboxProps {
   label: string;
@@ -12,6 +14,7 @@ interface CheckboxProps {
 }
 
 const Checkbox = ({ label, checked, onChange }: CheckboxProps) => {
+  const theme = useTheme<Theme>();
   return (
     <RectButton onPress={onChange} style={{ justifyContent: "center" }}>
       <Box flexDirection="row" alignItems="center">
