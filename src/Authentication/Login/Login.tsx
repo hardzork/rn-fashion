@@ -2,6 +2,7 @@ import React from "react";
 
 import { Button, Container, Text, Box } from "../../components";
 import TextInput from "../components/Form/TextInput";
+import Checkbox from "../components/Form/Checkbox";
 import SocialLogin from "../components/SocialLogin";
 
 const emailValidator = (email: string) =>
@@ -60,6 +61,23 @@ const Login = () => {
           secureTextEntry={true}
           autoCapitalize="none"
         />
+        <Box
+          flexDirection="row"
+          justifyContent="space-between"
+          alignItems="center"
+        >
+          <Checkbox label="Manter-me conectado" />
+          <Button variant="transparent" onPress={() => true}>
+            <Text color="primary">Esqueci minha senha</Text>
+          </Button>
+        </Box>
+        <Box alignItems="center" marginTop="m">
+          <Button
+            variant="primary"
+            label="Acessar sua conta"
+            onPress={() => true}
+          />
+        </Box>
       </Box>
     </Container>
   );
