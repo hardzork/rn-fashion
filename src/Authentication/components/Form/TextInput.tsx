@@ -21,7 +21,7 @@ const TextInput = ({ icon, touched, error, ...props }: TextInputProps) => {
   // eslint-disable-next-line no-nested-ternary
   const reColor = !touched ? "text" : error ? "danger" : "primary";
   const color = theme.colors[reColor];
-  const SIZE = theme.borderRadii.m * 2;
+  const SIZE = theme.borderRadii.m * 2.5;
   return (
     <Box
       flexDirection="row"
@@ -46,12 +46,17 @@ const TextInput = ({ icon, touched, error, ...props }: TextInputProps) => {
         <Box
           height={SIZE}
           width={SIZE}
-          borderRadius="m"
           justifyContent="center"
           alignItems="center"
           backgroundColor={!error ? "primary" : "danger"}
+          style={{ borderRadius: SIZE / 2 }}
         >
-          <Icon name={!error ? "check" : "x"} color="white" size={16} />
+          <Icon
+            name={!error ? "check" : "x"}
+            color="white"
+            size={16}
+            style={{ textAlign: "center" }}
+          />
         </Box>
       )}
     </Box>

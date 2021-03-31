@@ -1,5 +1,5 @@
 import React from "react";
-import { Formik } from "formik";
+import { Formik, useFormik } from "formik";
 import * as Yup from "yup";
 
 import { Button, Container, Text, Box } from "../../components";
@@ -45,6 +45,22 @@ const Login = () => {
     </>
   );
   const initialValues: FormData = { email: "", password: "", remember: true };
+  const {
+    handleChange,
+    handleBlur,
+    handleSubmit,
+    setFieldValue,
+    errors,
+    touched,
+    values,
+  } = useFormik({
+    initialValues,
+    validationSchema: LoginSchema,
+    onSubmit: (val: FormData, actions) => {
+      console.log({ val, actions });
+    },
+  });
+
   return (
     <Container {...{ footer }}>
       <Box padding="xl">
@@ -54,69 +70,52 @@ const Login = () => {
         <Text variant="body" textAlign="center" marginBottom="l">
           Use suas credenciais abaixo e acesse sua conta
         </Text>
-        <Formik
-          {...{ initialValues }}
-          validationSchema={LoginSchema}
-          onSubmit={(values: FormData, actions) => {
-            console.log({ values, actions });
-          }}
-        >
-          {({
-            handleChange,
-            handleBlur,
-            handleSubmit,
-            setFieldValue,
-            errors,
-            touched,
-            values,
-          }) => (
-            <Box>
-              <Box marginBottom="m">
-                <TextInput
-                  icon="mail"
-                  placeholder="Digite seu Email"
-                  keyboardType="email-address"
-                  autoCapitalize="none"
-                  onChangeText={handleChange("email")}
-                  onBlur={handleBlur("email")}
-                  error={errors.email}
-                  touched={touched.email}
-                />
-              </Box>
-              <TextInput
-                icon="lock"
-                placeholder="Informe sua senha"
-                secureTextEntry={true}
-                autoCapitalize="none"
-                onChangeText={handleChange("password")}
-                onBlur={handleBlur("password")}
-                error={errors.password}
-                touched={touched.password}
-              />
-              <Box
-                flexDirection="row"
-                justifyContent="space-between"
-                alignItems="center"
-              >
-                <Checkbox
-                  label="Manter-me conectado"
-                  checked={values.remember}
-                  onChange={() => setFieldValue("remember", !values.remember)}
-                />
-                <Button variant="transparent" onPress={() => true}>
-                  <Text color="primary">Esqueci minha senha</Text>
-                </Button>
-              </Box>
-              <Box alignItems="center" marginTop="m">
-                <Button
-                  variant="primary"
-                  label="Acessar sua conta"
-                  onPress={handleSubmit}
-                />
-              </Box>
-            </Box>
-          )}
-        </Formik>
+
+        <Box>
+          <Box marginBottom="m">
+            <TextInput
+              icon="mail"
+              placeholder="Digite seu Email"
+              keyboardType="email-address"
+              autoCapitalize="none"
+              onChangeText={handleChange("email")}
+              onBlur={handleBlur("email")}
+              error={errors.email}
+              touched={touched.email}
+            />
+          </Box>
+          <TextInput
+            icon="lock"
+            placeholder="Informe sua senha"
+            secureTextEntry={true}
+            autoCapitalize="none"
+            onChangeText={handleChange("password")}
+            onBlur={handleBlur("password")}
+            error={errors.password}
+            touched={touched.password}
+          />
+          <Box
+            flexDirection="row"
+            justifyContent="space-between"
+            alignItems="center"
+          >
+            <Checkbox
+              label="Manter-me conectado"
+              checked={values.remember}
+              onChange={() => setFieldValue("remember", !values.remember)}
+            />
+            <Button variant="transparent" onPress={() => true}>
+              <Text color="primary">Esqueci minha senha</Text>
+            </Button>
+          </Box>
+          <Box alignItems="center" marginTop="m">
+            <Button
+              variant="primary"
+              label="Acessar sua conta"
+              onPress={handleSubmit}
+            />
+          </Box>
+        </Box>
       </Box>
     </Container>
   );
