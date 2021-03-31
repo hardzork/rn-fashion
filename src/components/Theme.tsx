@@ -71,8 +71,5 @@ type NamedStyles<T> = { [P in keyof T]: ViewStyle | TextStyle | ImageStyle };
 export const makeStyles = <T extends NamedStyles<T>>(
   styles: (theme: Theme) => T
 ) => () => {
-  // const theme = ;
   return styles(useTheme<Theme>());
 };
-
-// export default theme;
