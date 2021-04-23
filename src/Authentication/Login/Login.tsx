@@ -1,11 +1,11 @@
 import React from "react";
-import { Formik, useFormik } from "formik";
+import { useFormik } from "formik";
 import * as Yup from "yup";
 
 import { Button, Container, Text, Box } from "../../components";
 import TextInput from "../components/Form/TextInput";
 import Checkbox from "../components/Form/Checkbox";
-import SocialLogin from "../components/SocialLogin";
+import Footer from "../components/Footer";
 
 const LoginSchema = Yup.object().shape({
   email: Yup.string().email("Formato de email inválido").required("Required"),
@@ -23,27 +23,13 @@ interface FormData {
 
 const Login = () => {
   const footer = (
-    <>
-      <SocialLogin />
-      <Box alignItems="center">
-        <Button
-          variant="transparent"
-          onPress={() => {
-            true;
-          }}
-        >
-          <Box flexDirection="row" justifyContent="center">
-            <Text variant="button" color="white">
-              Ainda não possui uma conta?
-            </Text>
-            <Text variant="button" color="primary" marginLeft="s">
-              Registre-se aqui
-            </Text>
-          </Box>
-        </Button>
-      </Box>
-    </>
+    <Footer
+      onPress={() => true}
+      title="Ainda não tem conta?"
+      action="Registre-se aqui"
+    />
   );
+
   const initialValues: FormData = { email: "", password: "", remember: true };
   const {
     handleChange,
@@ -87,7 +73,7 @@ const Login = () => {
           <TextInput
             icon="lock"
             placeholder="Informe sua senha"
-            secureTextEntry={true}
+            secureTextEntry
             autoCapitalize="none"
             onChangeText={handleChange("password")}
             onBlur={handleBlur("password")}
